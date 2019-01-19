@@ -6,7 +6,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.0.21",
     "@amcharts/amcharts4-geodata": "^4.0.27",
-    "twitter": "^1.7.1"
+    "twit": "^2.2.11"
   },
   "devDependencies": {},
   "scripts": {
