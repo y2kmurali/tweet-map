@@ -6,11 +6,14 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("map", am4maps.MapChart);
 chart.geodata = am4geodata_usaAlbersLow;
 chart.projection = new am4maps.projections.Miller();
-chart.homeZoomLevel = 2.5;
-chart.homeGeoPoint = {
-    latitude: 38,
-    longitude: -60
-};
+chart.homeZoomLevel = 1;
+
+chart.fitMapToContainer = true;
+
+//zoom bar
+chart.zoomControl = new am4maps.ZoomControl();
+chart.zoomControl.slider.height = 100;
+
 
 // Create map polygon series
 var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
@@ -34,6 +37,7 @@ function addCity(coords, title) {
     city.tooltipText = title;
     return city;
 }
+
 
 /*var paris = addCity({ "latitude": 48.8567, "longitude": 2.3510 }, "Paris");
 var toronto = addCity({ "latitude": 43.8163, "longitude": -79.4287 }, "Toronto");
