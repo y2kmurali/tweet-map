@@ -1,0 +1,25 @@
+{
+  "name": "twitter-sentiment-map",
+  "version": "1.0.0",
+  "description": "cause we're cool",
+  "main": "index.js",
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.0.21",
+    "@amcharts/amcharts4-geodata": "^4.0.27",
+    "twitter": "^1.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y2kmurali/twitter-sentiment-map.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/y2kmurali/twitter-sentiment-map/issues"
+  },
+  "homepage": "https://github.com/y2kmurali/twitter-sentiment-map#readme"
+}
