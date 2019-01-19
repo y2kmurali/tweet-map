@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Themes begin
 am4core.useTheme(am4themes_animated);
 // Themes end
@@ -173,3 +174,10 @@ function flyPlane() {
 
 // Go!
 flyPlane();
+=======
+
+
+var map = am4core.create("chartdiv", am4maps.MapChart);
+document.getElementById('map').innerHTML = map;
+document.getElementById('lol').innerHTML = "eyyy";
+>>>>>>> c061013a9f856884a5277d3142fc0048ac28ac2c
