@@ -14,11 +14,27 @@ chart.fitMapToContainer = true;
 chart.zoomControl = new am4maps.ZoomControl();
 chart.zoomControl.slider.height = 100;
 
+//home button
+var button = chart.chartContainer.createChild(am4core.Button);
+button.padding(5, 5, 5, 5);
+button.width = 20;
+button.align = "right";
+button.marginRight = 15;
+button.events.on("hit", function() {
+  chart.goHome();
+});
+button.icon = new am4core.Sprite();
+button.icon.path = "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8";
 
 // Create map polygon series
 var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
 polygonSeries.useGeodata = true;
-polygonSeries.mapPolygons.template.fill = chart.colors.getIndex(0).lighten(0.5);
+polygonSeries.mapPolygons.template.fill = chart.colors.getIndex(0).lighten(0.4);
+polygonSeries.mapPolygons.template.tooltipText = "{name}";
+
+//hover stuff
+var hs = polygonSeries.mapPolygons.template.states.create("hover");
+hs.properties.fill = am4core.color("#367B25");
 
 // Add line bullets
 var cities = chart.series.push(new am4maps.MapImageSeries());
@@ -37,6 +53,8 @@ function addCity(coords, title) {
     city.tooltipText = title;
     return city;
 }
+
+
 
 
 /*var paris = addCity({ "latitude": 48.8567, "longitude": 2.3510 }, "Paris");
