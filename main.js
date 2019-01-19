@@ -39,3 +39,5 @@ polygonSeries.mapPolygons.template.events.on("hit", function(ev) {
 //hover stuff
 var hs = polygonSeries.mapPolygons.template.states.create("hover");
 hs.properties.fill = am4core.color("#367B25");
+hs.properties.stroke = am4core.color("#222");
+hs.properties.scale = 1.01;
