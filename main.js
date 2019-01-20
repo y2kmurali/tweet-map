@@ -42,6 +42,9 @@ polygonSeries.mapPolygons.template.events.on("hit", function (ev) {
 // hs.properties.stroke = am4core.color("#222");
 // hs.properties.scale = 1.01;
 
+//function to convert input to polygon series data
+
+
 //heatmap stuff
 polygonSeries.data = [
   { id: "US-AL", value: 60.524 },
@@ -108,6 +111,15 @@ polygonSeries.heatRules.push({
   "minValue": 0,
   "maxValue": 100,
   "dataField": "value"
+});
+
+fetch('http://localhost:3000/api').then(response => {
+  return response.json();
+}).then(data => {
+  // Work with JSON data here
+  console.log(data);
+}).catch(err => {
+  console.log(err);
 });
 
 polygonSeries.mapPolygons.template.propertyFields.value = "value";
