@@ -26,14 +26,14 @@ button.width = 20;
 button.align = "right";
 button.marginRight = 15;
 button.events.on("hit", function () {
-    chart.goHome();
+  chart.goHome();
 });
 button.icon = new am4core.Sprite();
 button.icon.path = "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8";
 
 //click to focus on state
 polygonSeries.mapPolygons.template.events.on("hit", function (ev) {
-    ev.target.series.chart.zoomToMapObject(ev.target);
+  ev.target.series.chart.zoomToMapObject(ev.target);
 });
 
 //hover stuff
@@ -51,43 +51,63 @@ polygonSeries.data = [];
 //create polygon data fields
 //polygonSeries.dataField.value = "value";
 
-function redoData() {
-    fetch('http://localhost:3000/api').then(response => {
-        return response.json();
-    }).then(data => {
-        // Work with JSON data here
-        //chart.invalidateRawData();
-        // console.log(data);
-        //polygonSeries.data.length = 0;
-        var dd = [];
-        Object.keys(data).forEach(function (key) {
-            dd.push({ "id": key, "value": data[key] });
-        });
-        polygonSeries.data = dd;
+function getEmoji(val) {
+  if (val <= 25) {
+    return "😢";
+  } else if (val <= 40) {
+    return "☹";
+  } else if (val <= 45) {
+    return "😟";
+  } else if (val <= 55) {
+    return "😐";
+  } else if (val <= 60) {
+    return "🙂";
+  } else if (val <= 75) {
+    return "😊";
+  } else if (val <= 100) {
+    return "😀";
+  } else {
+    return "⛔";
+  }
+}
 
-        // data.forEach( function (pair) {
-        //     polygonSeries.data.push({ "id": pair["id"], "value" : pair["value"]});                        
-        // });
-        //chart.validateData();
-        // console.log(polygonSeries.data)
-        
-    }).catch(err => {
-        console.log(err);
+function redoData() {
+  fetch('http://localhost:3000/api').then(response => {
+    return response.json();
+  }).then(data => {
+    // Work with JSON data here
+    //chart.invalidateRawData();
+    // console.log(data);
+    //polygonSeries.data.length = 0;
+    var dd = [];
+    Object.keys(data).forEach(function (key) {
+      dd.push({ "id": key, "value": data[key], "emoji": getEmoji(data[key]) });
     });
-    setTimeout(redoData, 500);
+    polygonSeries.data = dd;
+
+    // data.forEach( function (pair) {
+    //     polygonSeries.data.push({ "id": pair["id"], "value" : pair["value"]});                        
+    // });
+    //chart.validateData();
+    // console.log(polygonSeries.data)
+
+  }).catch(err => {
+    console.log(err);
+  });
+  setTimeout(redoData, 500);
 }
 
 redoData();
 
 polygonSeries.heatRules.push({
-    "property": "fill",
-    "target": polygonSeries.mapPolygons.template,
-    "min": am4core.color("#fc6c6c"),
-    "max": am4core.color("#6ec980"),
-    "minValue": 0,
-    "maxValue": 100,
-    "dataField": "value"
+  "property": "fill",
+  "target": polygonSeries.mapPolygons.template,
+  "min": am4core.color("#fc6c6c"),
+  "max": am4core.color("#6ec980"),
+  "minValue": 0,
+  "maxValue": 100,
+  "dataField": "value"
 });
 
 polygonSeries.mapPolygons.template.propertyFields.value = "value";
-polygonSeries.mapPolygons.template.tooltipText = "{name}: {value}";
+polygonSeries.mapPolygons.template.tooltipText = "{name}: {value}: {emoji}";
