@@ -102,18 +102,8 @@ redoData();
 polygonSeries.heatRules.push({
   "property": "fill",
   "target": polygonSeries.mapPolygons.template,
-  "min": am4core.color("#fc6c6c"),
-  "max": am4core.color("#6ec980"),
-  "minValue": 0,
-  "maxValue": 100,
-  "dataField": "value"
-});
-
-polygonSeries.heatRules.push({
-  "property": "fill",
-  "target": polygonSeries.mapPolygons.template,
-  "min": am4core.color("#fc6c6c"),
-  "max": am4core.color("#6ec980"),
+  "min": am4core.color("#f72500"),
+  "max": am4core.color("#64f38c"),
   "minValue": 0,
   "maxValue": 100,
   "dataField": "value"
