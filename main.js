@@ -89,5 +89,19 @@ polygonSeries.heatRules.push({
     "dataField": "value"
 });
 
+polygonSeries.heatRules.push({
+  "property": "fill",
+  "target": polygonSeries.mapPolygons.template,
+  "min": am4core.color("#fc6c6c"),
+  "max": am4core.color("#6ec980"),
+  "minValue": 0,
+  "maxValue": 100,
+  "dataField": "value"
+});
+
+var heatLegend = chart.createChild(am4maps.HeatLegend);
+heatLegend.series = polygonSeries;
+heatLegend.width = am4core.percent(100);
+
 polygonSeries.mapPolygons.template.propertyFields.value = "value";
 polygonSeries.mapPolygons.template.tooltipText = "{name}: {value}";
